@@ -18,8 +18,6 @@ public class AndroidDriverProvider implements WebDriverProvider {
     @NonNull
     public WebDriver createDriver(@NonNull Capabilities capabilities) {
         UiAutomator2Options options = getUiAutomator2Options();
-        options.setFullReset(ConfigReader.getOptionFullReset());
-        options.setNewCommandTimeout(Duration.ofSeconds(ConfigReader.getOptionNewCommandTimeout()));
 
         try {
             return new AndroidDriver(URI.create(ConfigReader.getAppiumServerUrl()).toURL(), options);
@@ -37,6 +35,8 @@ public class AndroidDriverProvider implements WebDriverProvider {
         options.setAppPackage(ConfigReader.getOptionAppPackage());
         options.setAppActivity(ConfigReader.getOptionAppActivity());
         options.setNoReset(ConfigReader.getOptionNoReset());
+        options.setFullReset(ConfigReader.getOptionFullReset());
+        options.setNewCommandTimeout(Duration.ofSeconds(ConfigReader.getOptionNewCommandTimeout()));
         return options;
     }
 }
