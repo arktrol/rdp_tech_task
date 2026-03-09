@@ -1,4 +1,4 @@
-package ru.app_tests.vkvideo;
+package ru.app_tests.alchemy;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.appium.SelenideAppium;
@@ -10,18 +10,18 @@ import ru.driver.AndroidDriverProvider;
 import ru.utils.propertiesReaders.ConfigReader;
 
 @Slf4j
-public class BaseVkVideoTest {
+public class BaseAlchemyTest {
     @BeforeAll
     public static void setUp() {
-        System.setProperty("options.app.package", ConfigReader.getOptionAppPackageVkVideo());
-        System.setProperty("options.app.activity", ConfigReader.getOptionAppActivityVkVideo());
+        System.setProperty("options.app.package", ConfigReader.getOptionAppPackageAlchemy());
+        System.setProperty("options.app.activity", ConfigReader.getOptionAppActivityAlchemy());
 
         Configuration.browser = AndroidDriverProvider.class.getName();
         Configuration.browserSize = null;
         Configuration.timeout = ConfigReader.getSelenideConfigTimeout();
 
         SelenideAppium.launchApp();
-        log.info("Setup [VK video app] complete SUCCESS");
+        log.info("Setup [Alchemy app] complete SUCCESS");
     }
 
     @AfterAll
