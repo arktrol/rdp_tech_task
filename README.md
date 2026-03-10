@@ -21,10 +21,9 @@
 
 ### 2. Установка приложений
 **VK Видео:**
-- Установи через Google Play на эмуляторе с Play Market, либо скачай APK под x86
--
+- Установи через Google Play на эмуляторе с Play Market, либо скачай APK под x86_64
 **Алхимия:**
-- Установи через Google Play на эмуляторе с Play Market, либо скачай APK под x86
+- Установи через Google Play на эмуляторе с Play Market, либо скачай APK под x86_64
 
 ### 3. Запуск
 ```bash
@@ -42,13 +41,27 @@ src/
 │   │       ├── page_object_model/
 │   │       │   ├── alchemy/
 │   │       │   │   ├── base/
-│   │       │   │   │   ├── BaseScreen.java
-│   │       │   │   │   └── LocatorEnum.java
+│   │       │   │   │   ├── BaseAlchemyScreen.java
+│   │       │   │   │   └── LocatorAlchemyEnum.java
 │   │       │   │   ├── screens/
+│   │       │   │       ├── ads_screen/
+│   │       │   │       │   ├── AdsLocators.java
+│   │       │   │       │   └── AdsScreen.java
+│   │       │   │       ├── home_screen/
+│   │       │   │       │   ├── HomeLocators.java
+│   │       │   │       │   └── HomeScreen.java
+│   │       │   │       ├── play_screen/
+│   │       │   │           ├── components/
+│   │       │   │           │   ├── HintsSideBarComponent.java
+│   │       │   │           │   └── HintsSideBarLocators.java
+│   │       │   │           ├── handlers/
+│   │       │   │           │   └── HintsHandler.java
+│   │       │   │           ├── PlayMenuLocators.java
+│   │       │   │           └── PlayMenuScreen.java
 │   │       │   ├── vkvideo/
 │   │       │       ├── base/
-│   │       │       │   ├── BaseScreen.java
-│   │       │       │   └── LocatorEnum.java
+│   │       │       │   ├── BaseVkVideoScreen.java
+│   │       │       │   └── LocatorVkVideoEnum.java
 │   │       │       ├── screens/
 │   │       │       │   ├── home_screen/
 │   │       │       │   │   ├── HomeLocators.java
@@ -78,6 +91,8 @@ src/
     │   ├── ru/
     │       ├── app_tests/
     │       │   ├── alchemy/
+    │       │   │   ├── hints_by_ads/
+    │       │   │   │   └── HintsByAdsWatchTest.java
     │       │   │   └── BaseAlchemyTest.java
     │       │   ├── vkvideo/
     │       │       ├── video_player/
@@ -86,7 +101,6 @@ src/
     │       ├── base/
     ├── resources/
         └── logback-test.xml
-
 ```
 
 ## Конфигурация

@@ -1,14 +1,12 @@
 package ru.page_object_model.vkvideo.screens.search_screen;
 
-import com.codeborne.selenide.appium.SelenideAppium;
 import io.appium.java_client.AppiumBy;
-import ru.page_object_model.vkvideo.base.BaseScreen;
+import ru.page_object_model.vkvideo.base.BaseVkVideoScreen;
 import ru.page_object_model.vkvideo.screens.search_screen.componenets.VideoSearchBarComponent;
 
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
 
-public class VideoSearchScreen extends BaseScreen<VideoSearchLocators> {
+public class VideoSearchScreen extends BaseVkVideoScreen<VideoSearchLocators> {
     public final VideoSearchBarComponent searchBar;
 
     public VideoSearchScreen() {
