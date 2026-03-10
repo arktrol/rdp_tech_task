@@ -34,7 +34,7 @@ public class VideoPlayerTest extends BaseVkVideoTest {
     }
 
     @BeforeEach
-    void testSetUp(){
+    void setUpTest(){
         NetworkUtils.enableAll();
         homeScreen.header.clickElement(HeaderLocators.SEARCH_BTN_ACID);
         log.info("Нажали на кнопку поиска видео в хедере");

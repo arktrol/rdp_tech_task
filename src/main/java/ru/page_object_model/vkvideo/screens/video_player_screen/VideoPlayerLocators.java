@@ -3,10 +3,10 @@ package ru.page_object_model.vkvideo.screens.video_player_screen;
 import io.appium.java_client.AppiumBy;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import ru.page_object_model.vkvideo.base.LocatorEnum;
+import ru.page_object_model.vkvideo.base.LocatorVkVideoEnum;
 
 @Getter
-public enum VideoPlayerLocators implements LocatorEnum {
+public enum VideoPlayerLocators implements LocatorVkVideoEnum {
     VIDEO_PROGRESS_TIME_CODE_ID(AppiumBy.id("com.vk.vkvideo:id/current_progress")),
     VIDEO_DISPLAY_ID(AppiumBy.id("com.vk.vkvideo:id/video_display")),
     SEEK_BAR_ACID(AppiumBy.accessibilityId("Перемотка")),

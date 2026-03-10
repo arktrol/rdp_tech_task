@@ -1,4 +1,4 @@
-package ru.page_object_model.alchemy.base;
+package ru.page_object_model.vkvideo.base;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.appium.SelenideAppium;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 
-public abstract class BaseScreen <T extends Enum<T> & LocatorEnum>{
+public abstract class BaseVkVideoScreen<T extends Enum<T> & LocatorVkVideoEnum>{
 
     private final Class<T> enumType;
 
@@ -32,7 +32,7 @@ public abstract class BaseScreen <T extends Enum<T> & LocatorEnum>{
     }
 
     @SuppressWarnings("unchecked")
-    protected BaseScreen() {
+    protected BaseVkVideoScreen() {
         this.enumType = (Class<T>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
     }

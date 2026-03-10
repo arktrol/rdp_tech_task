@@ -3,8 +3,7 @@ package ru.page_object_model.vkvideo.screens.video_player_screen;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.Point;
-import ru.page_object_model.vkvideo.base.BaseScreen;
+import ru.page_object_model.vkvideo.base.BaseVkVideoScreen;
 
 import java.time.Duration;
 
@@ -14,7 +13,7 @@ import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 
 @Slf4j
-public class VideoPlayerScreen extends BaseScreen<VideoPlayerLocators> {
+public class VideoPlayerScreen extends BaseVkVideoScreen<VideoPlayerLocators> {
 
     private static final long LoadingTimeout = 10;
 

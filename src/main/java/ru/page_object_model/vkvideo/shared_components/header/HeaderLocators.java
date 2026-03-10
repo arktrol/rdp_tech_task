@@ -3,10 +3,10 @@ package ru.page_object_model.vkvideo.shared_components.header;
 import io.appium.java_client.AppiumBy;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import ru.page_object_model.vkvideo.base.LocatorEnum;
+import ru.page_object_model.vkvideo.base.LocatorVkVideoEnum;
 
 @Getter
-public enum HeaderLocators implements LocatorEnum {
+public enum HeaderLocators implements LocatorVkVideoEnum {
     HEADER_ID(AppiumBy.id("com.vk.vkvideo:id/outer_header_container")),
     SEARCH_BTN_ACID(AppiumBy.accessibilityId("Поиск")),
     ;
