@@ -1,4 +1,4 @@
-package ru.utils.propertiesReaders;
+package ru.utils.properties_readers;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -3,18 +3,14 @@ package ru.page_object_model.vkvideo.base;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.appium.SelenideAppium;
 import com.codeborne.selenide.appium.SelenideAppiumCollection;
-import io.appium.java_client.AppiumBy;
-import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.Arrays;
 
-import static com.codeborne.selenide.Condition.clickable;
-import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 
-@Slf4j
 public abstract class BaseScreen <T extends Enum<T> & LocatorEnum>{
 
     private final Class<T> enumType;
@@ -25,6 +21,14 @@ public abstract class BaseScreen <T extends Enum<T> & LocatorEnum>{
 
     protected SelenideAppiumCollection $$(T elements) {
         return SelenideAppium.$$(elements.getLocator());
+    }
+
+    protected SelenideElement $(By locator) {
+        return SelenideAppium.$(locator);
+    }
+
+    protected SelenideAppiumCollection $$(By elements) {
+        return SelenideAppium.$$(elements);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,19 +43,19 @@ public abstract class BaseScreen <T extends Enum<T> & LocatorEnum>{
     }
 
     public void clickElement(T element) {
-        $(element).shouldBe(visible, enabled, clickable).click();
+        $(element).shouldBe(exist).click();
     }
 
     public void sendKeys(T element, String text) {
-        $(element).shouldBe(visible,enabled).setValue(text);
+        $(element).shouldBe(exist).setValue(text);
     }
 
     public String getText(T element) {
-        return $(element).shouldBe(visible).getText();
+        return $(element).shouldBe(exist).getText();
     }
 
     public boolean isElementPresent(T element) {
-        return $(element).shouldBe(visible, exist).is(exist);
+        return $(element).shouldBe(exist).exists();
     }
 
     public boolean isElementVisible(T element) {

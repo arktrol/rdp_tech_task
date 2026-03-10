@@ -5,15 +5,17 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.appium.SelenideAppium;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import ru.driver.AndroidDriverProvider;
-import ru.utils.propertiesReaders.ConfigReader;
+import ru.utils.properties_readers.ConfigReader;
 
 @Slf4j
 public class BaseVkVideoTest {
 
     @BeforeAll
-    public static void setUp() {
+    static void setUp() {
         System.setProperty("options.app.package", ConfigReader.getOptionAppPackageVkVideo());
         System.setProperty("options.app.activity", ConfigReader.getOptionAppActivityVkVideo());
 
@@ -21,13 +23,22 @@ public class BaseVkVideoTest {
         Configuration.browserSize = null;
         Configuration.timeout = ConfigReader.getSelenideConfigTimeout();
 
-        SelenideAppium.launchApp();
         log.info("Setup [VK video app] complete SUCCESS");
     }
 
     @AfterAll
-    public static void tearDown(){
+    static void tearDown(){
+        log.info("Tear down SUCCESS");
+    }
+
+    @BeforeEach
+    void driverLaunch(){
+        SelenideAppium.launchApp();
+        log.info("Driver launched");
+    }
+    @AfterEach
+    void driverClose(){
         Selenide.closeWebDriver();
-        log.info("Driver closed.Tear down SUCCESS");
+        log.info("Driver closed");
     }
 }

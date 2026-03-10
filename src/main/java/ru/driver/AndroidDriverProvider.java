@@ -6,7 +6,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import lombok.NonNull;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import ru.utils.propertiesReaders.ConfigReader;
+import ru.utils.properties_readers.ConfigReader;
 
 import java.net.MalformedURLException;
 import java.net.URI;

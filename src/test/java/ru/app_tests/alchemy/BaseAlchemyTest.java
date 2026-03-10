@@ -4,10 +4,12 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.appium.SelenideAppium;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.driver.AndroidDriverProvider;
-import ru.utils.propertiesReaders.ConfigReader;
+import ru.utils.properties_readers.ConfigReader;
 
 @Slf4j
 public class BaseAlchemyTest {
@@ -20,19 +22,28 @@ public class BaseAlchemyTest {
         Configuration.browserSize = null;
         Configuration.timeout = ConfigReader.getSelenideConfigTimeout();
 
-        SelenideAppium.launchApp();
         log.info("Setup [Alchemy app] complete SUCCESS");
     }
 
     @AfterAll
     public static void tearDown(){
-        Selenide.closeWebDriver();
         log.info("Driver closed.Tear down SUCCESS");
+    }
+
+    @BeforeEach
+    void driverLaunch(){
+        SelenideAppium.launchApp();
+        log.info("Driver launched");
+    }
+    @AfterEach
+    void driverClose(){
+        Selenide.closeWebDriver();
+        log.info("Driver closed");
     }
 
     @Test
     void testVideoPlays() {
-        // Здесь будет логика теста
+
         System.out.println("Тест запущен, приложение открыто");
         log.info("Тест завершен");
     }

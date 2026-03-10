@@ -10,8 +10,5 @@ import java.util.Map;
 public class VideoSearchBarComponent extends BaseScreen<VideoSearchBarLocators> {
     public void search(String searchTerm){
         $(VideoSearchBarLocators.SEARCH_BAR_INPUT_ID).setValue(searchTerm);
-
-        AndroidDriver driver = (AndroidDriver) WebDriverRunner.getWebDriver();
-        driver.executeScript("mobile: performEditorAction", Map.of("action", "search"));
     }
 }
