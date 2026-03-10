@@ -40,11 +40,4 @@ public class BaseAlchemyTest {
         Selenide.closeWebDriver();
         log.info("Driver closed");
     }
-
-    @Test
-    void testVideoPlays() {
-
-        System.out.println("Тест запущен, приложение открыто");
-        log.info("Тест завершен");
-    }
 }

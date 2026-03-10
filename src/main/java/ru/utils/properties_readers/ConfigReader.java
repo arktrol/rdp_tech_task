@@ -89,9 +89,3 @@ public class ConfigReader {
         return Long.parseLong(getProperty("selenide.configuration.timeout"));
     }
 }
-
-class Main {
-    public static void main(String[] args) {
-        System.setProperty("options.platform.name", "IOS");
-    }
-}
