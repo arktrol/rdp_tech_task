@@ -15,8 +15,18 @@ public class HintsSideBarComponent extends BaseAlchemyScreen<HintsSideBarLocator
     Duration duration = Duration.ofSeconds(10);
 
     private void saveCurrentHintsCount() {
-        long count = Long.parseLong($(HintsSideBarLocators.HINTS_COUNT_CONTAINER_UIS).find(HintsSideBarLocators.HINTS_COUNT_VALUE_RELATIVE_CLASS.getLocator()).getText());
-        HintsHandler.getInstance().setCurrentValue(count);
+        HintsHandler.getInstance().setCurrentValue(getCurrentHintsCount());
+    }
+
+    private long getCurrentHintsCount(){
+        return Long.parseLong($(HintsSideBarLocators.HINTS_COUNT_CONTAINER_UIS).find(HintsSideBarLocators.HINTS_COUNT_VALUE_RELATIVE_CLASS.getLocator()).getText());
+    }
+
+    public boolean isHintsAdded(){
+        long currentHintsCount = getCurrentHintsCount();
+        long prevHintsCount = HintsHandler.getInstance().getCurrentValue();
+        log.info("Текущее количество подсказок: {}, значение в хендлере: {}",currentHintsCount,prevHintsCount);
+        return currentHintsCount - prevHintsCount == 2;
     }
 
     public void watchAds() {
