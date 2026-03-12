@@ -37,9 +37,6 @@ public class AndroidDriverProvider implements WebDriverProvider {
         options.setNoReset(ConfigReader.getOptionNoReset());
         options.setFullReset(ConfigReader.getOptionFullReset());
         options.setNewCommandTimeout(Duration.ofSeconds(ConfigReader.getOptionNewCommandTimeout()));
-        options.setCapability("ensureWebviewsHavePages", true);
-        options.setCapability("recreateChromeDriverSessions", true);
-        options.setCapability("webviewConnectTimeout", 30000);
         return options;
     }
 }
