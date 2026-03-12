@@ -63,9 +63,15 @@ public class VideoPlayerTest extends BaseVkVideoTest {
         videoPlayerScreen.pauseVideo();
         log.info("Поставили видео на паузу");
 
-        assertThat(videoPlayerScreen.isSeekBarValueNotDefault())
-                .isTrue();
-        log.info("Прокрутка сместилась из начального положения. Видео работает");
+        videoPlayerScreen.clickElement(VideoPlayerLocators.SEEK_BAR_ACID);
+        log.info("Промотали видео на середину");
+
+        videoPlayerScreen.clickElement(VideoPlayerLocators.PLAY_BTN_ACID);
+        log.info("Нажали на кнопку Play");
+
+        assertThat(videoPlayerScreen.isLoadingNotDisappear())
+                .isFalse();
+        log.info("Загрузка пропала, видео работает");
 
         log.info("Тест завершен");
     }
