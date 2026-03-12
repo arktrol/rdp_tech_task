@@ -68,8 +68,8 @@ public class VideoPlayerTest extends BaseVkVideoTest {
         videoPlayerScreen.clickElement(VideoPlayerLocators.PLAY_BTN_ACID);
         log.info("Нажали на кнопку Play");
 
-        assertThat(videoPlayerScreen.isLoadingNotDisappear())
-                .isFalse();
+        assertThat(videoPlayerScreen.isLoadingDisappear())
+                .isTrue();
         log.info("Загрузка пропала, видео работает");
 
         log.info("Тест завершен");

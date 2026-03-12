@@ -6,6 +6,7 @@ import com.codeborne.selenide.appium.SelenideAppiumCollection;
 import org.openqa.selenium.By;
 
 import java.lang.reflect.ParameterizedType;
+import java.time.Duration;
 import java.util.Arrays;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -56,6 +57,9 @@ public abstract class BaseVkVideoScreen<T extends Enum<T> & LocatorVkVideoEnum>{
 
     public boolean isElementPresent(T element) {
         return $(element).shouldBe(exist).exists();
+    }
+    public boolean isElementPresent(T element, Duration duration) {
+        return $(element).shouldBe(exist,duration).exists();
     }
 
     public boolean isElementVisible(T element) {

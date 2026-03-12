@@ -28,22 +28,39 @@ public class AdsScreen extends BaseAlchemyScreen<AdsLocators> {
 
     private final HintsSideBarComponent hintsSideBarComponent = new HintsSideBarComponent();
 
+    /**
+     * @author Арьков Анатолий
+     * Метод для скипа всех рекламных экранов для com.yandex.mobile.ads.common.AdActivity
+     * и sg.bigo.ads.api.CompanionAdActivity
+     * метод может сделать максимум 20 кликов, если до этого дошло, то реклама сбрасывается и начинается новый просмотр
+     * это костыль для неизвестных видов рекламы или случайном клике в другое место, а также защита от бесконечного цикла
+     */
     public void skipAllAds() {
         AndroidDriver driver = (AndroidDriver) WebDriverRunner.getWebDriver();
-        log.info("Текущая активность: {}", driver.currentActivity());
-        log.info(driver.getCurrentPackage());
-        while (driver.currentActivity().equals("com.yandex.mobile.ads.common.AdActivity") || driver.currentActivity().equals("sg.bigo.ads.api.CompanionAdActivity")) {
+        String appPackage = ConfigReader.getOptionAppPackageAlchemy();
+        String appActivity = ConfigReader.getOptionAppActivityAlchemy();
+        int maxAttempts = 20;
+        int attempt = 0;
+        while (attempt < maxAttempts && driver.currentActivity().equals("com.yandex.mobile.ads.common.AdActivity") ||
+                driver.currentActivity().equals("sg.bigo.ads.api.CompanionAdActivity")) {
+            attempt++;
+            log.info("Попытка: {}", attempt);
+            log.info("Текущая активность: {}", driver.currentActivity());
+            log.info("Текущий пакет: {}",driver.getCurrentPackage());
             clickSkipAds();
-            log.info("Скипнули");
         }
+
         log.info("Всю рекламу проскипали");
-        if (!driver.getCurrentPackage().equals(ConfigReader.getOptionAppPackageAlchemy())) {
+        log.info("Текущая активность: {}", driver.currentActivity());
+        log.info("Текущий пакет: {}",driver.getCurrentPackage());
+        if (!driver.currentActivity().equals(appActivity)) {
             log.info("Текущая активность не соответствует приложению");
-            driver.activateApp(ConfigReader.getOptionAppPackageAlchemy());
+            driver.activateApp(appPackage);
             log.info("Зашли в приложение");
             if(!hintsSideBarComponent.isHintsAdded()){
                 log.info("Подсказки не добавились, смотрим новую рекламу");
                 hintsSideBarComponent.watchAds();
+                skipAllAds();
             }
         }
     }

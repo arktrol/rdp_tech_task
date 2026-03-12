@@ -32,11 +32,25 @@ public class VideoPlayerScreen extends BaseVkVideoScreen<VideoPlayerLocators> {
 
     public boolean isLoadingNotDisappear() {
         try {
-            $(VideoPlayerLocators.LOADING_CIRCULAR_ID).should(not(disappear), Duration.ofSeconds(LoadingTimeout));
-            log.info("Колесо загрузки не исчезло");
+            boolean isLoadingPresent = isElementPresent(VideoPlayerLocators.LOADING_CIRCULAR_ID, Duration.ofSeconds(LoadingTimeout));
+            if(isLoadingPresent){
+                $(VideoPlayerLocators.LOADING_CIRCULAR_ID).should(disappear, Duration.ofSeconds(LoadingTimeout));
+                log.error("Колесо загрузки исчезло");
+            }
+            return false;
+        } catch (AssertionError e) {
+            log.info("Колесо загрузки не исчезло после {} секунд", LoadingTimeout);
+            return true;
+        }
+    }
+
+    public boolean isLoadingDisappear() {
+        try {
+            $(VideoPlayerLocators.LOADING_CIRCULAR_ID).should(not(exist), Duration.ofSeconds(LoadingTimeout));
+            log.info("Колесо загрузки исчезло");
             return true;
         } catch (AssertionError e) {
-            log.error("Колесо загрузки исчезло после {} секунд", LoadingTimeout);
+            log.error("Колесо загрузки не исчезло после {} секунд", LoadingTimeout);
             return false;
         }
     }
