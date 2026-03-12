@@ -61,7 +61,7 @@ public class AdsScreen extends BaseAlchemyScreen<AdsLocators> {
         );
         Matcher matcherCountDown = patternCountDown.matcher(source);
 
-        int waitTime = 15;
+        int waitTime = 10;
 
         try {
             log.info(matcherCountDown.toString());
@@ -90,7 +90,7 @@ public class AdsScreen extends BaseAlchemyScreen<AdsLocators> {
             return;
         }
 
-        int waitTime = 15;
+        int waitTime = 10;
 
         try {
             if (waitTime > 0) {
