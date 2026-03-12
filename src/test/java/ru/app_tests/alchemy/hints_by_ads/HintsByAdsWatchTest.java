@@ -1,38 +1,20 @@
 package ru.app_tests.alchemy.hints_by_ads;
 
-import com.codeborne.selenide.WebDriverRunner;
-import com.google.common.collect.ImmutableMap;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.offset.PointOption;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Rectangle;
-import org.openqa.selenium.WebElement;
 import ru.app_tests.alchemy.BaseAlchemyTest;
-import ru.page_object_model.alchemy.screens.ads_screen.AdsLocators;
 import ru.page_object_model.alchemy.screens.ads_screen.AdsScreen;
 import ru.page_object_model.alchemy.screens.home_screen.HomeLocators;
 import ru.page_object_model.alchemy.screens.home_screen.HomeScreen;
 import ru.page_object_model.alchemy.screens.play_screen.PlayMenuLocators;
 import ru.page_object_model.alchemy.screens.play_screen.PlayMenuScreen;
 import ru.utils.android_settings.NetworkUtils;
-import ru.utils.properties_readers.ConfigReader;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static com.codeborne.selenide.Selenide.sleep;
-import static com.codeborne.selenide.appium.SelenideAppium.$;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j

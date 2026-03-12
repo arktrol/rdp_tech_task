@@ -13,7 +13,6 @@ import ru.page_object_model.vkvideo.screens.video_player_screen.VideoPlayerScree
 import ru.page_object_model.vkvideo.shared_components.header.HeaderLocators;
 import ru.utils.android_settings.NetworkUtils;
 
-import static com.codeborne.selenide.Selenide.sleep;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j

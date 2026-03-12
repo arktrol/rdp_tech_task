@@ -1,4 +1,5 @@
 package ru.app_tests.alchemy;
+
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.appium.SelenideAppium;
@@ -7,7 +8,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import ru.driver.AndroidDriverProvider;
 import ru.utils.properties_readers.ConfigReader;
 

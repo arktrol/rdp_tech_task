@@ -1,6 +1,5 @@
 package ru.page_object_model.alchemy.screens.play_screen.components;
 
-import com.codeborne.selenide.SelenideElement;
 import lombok.extern.slf4j.Slf4j;
 import ru.page_object_model.alchemy.base.BaseAlchemyScreen;
 import ru.page_object_model.alchemy.screens.play_screen.handlers.HintsHandler;
