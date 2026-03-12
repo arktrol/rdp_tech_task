@@ -61,170 +61,27 @@ public class HintsByAdsWatchTest extends BaseAlchemyTest {
         NetworkUtils.enableAll();
     }
 
+    /**
+     * @author Арьков Анатолий
+     * Покрывает виды реклам из активностей: com.yandex.mobile.ads.common.AdActivity и sg.bigo.ads.api.CompanionAdActivity.
+     * для других активностей необходимо разработать логику скипа
+     */
     @Test
     void testHintsAbuse() {
         log.info("Старт теста");
 
-        AndroidDriver driver = (AndroidDriver) WebDriverRunner.getWebDriver();
-
-        log.info(driver.currentActivity());
-        log.info(driver.getCurrentPackage());
-
         homeScreen.clickElement(HomeLocators.PLAY_BTN_UIS);
+        log.info("Открыли меню игры");
 
         playMenuScreen.clickElement(PlayMenuLocators.HINTS_ADD_BTN_UIS);
+        log.info("Открыли сайдбар добавления подсказок");
 
         playMenuScreen.hintsSideBar.watchAds();
 
-//        driver.currentActivity().contains("AdActivity");
-        sleep(16000);
-
-        log.info(driver.currentActivity());
-        log.info(driver.getCurrentPackage());
-
-//        driver.executeScript("mobile: clickGesture", ImmutableMap.of(
-//                "x", 1000,
-//                "y", 250
-//        ));
-
-//        driver.executeScript("mobile: clickGesture", ImmutableMap.of(
-//                "x", 1000,
-//                "y", 800
-//        ));
-
-//        =================
-
-//        List<WebElement> elements =
-//                driver.findElements(AppiumBy.className("android.widget.ImageView"));
-//
-//        for (WebElement el : elements) {
-//            Rectangle r = el.getRect();
-//
-//            if (r.getX() > 900 && el.isDisplayed()) {
-//                log.info("click");
-//                el.click();
-//                break;
-//            }
-//        }
-
-        clickSkipAds();
-        log.info("скип");
-
-        sleep(16000);
-
-//        List<WebElement> elements2 =
-//                driver.findElements(AppiumBy.className("android.widget.ImageView"));
-//
-//        for (WebElement el : elements2) {
-//            Rectangle r = el.getRect();
-//
-//            if (r.getX() > 900 && el.isDisplayed()) {
-//                log.info("click");
-//                el.click();
-//                break;
-//            }
-//        }
-
-
-        clickSkipAds();
-        log.info("скип");
-
-        sleep(16000);
-
-
-//        List<WebElement> elements3 =
-//                driver.findElements(AppiumBy.className("android.widget.ImageView"));
-//
-//        for (WebElement el : elements3) {
-//            Rectangle r = el.getRect();
-//
-//            if (r.getX() > 900 && el.isDisplayed()) {
-//                log.info("click");
-//                el.click();
-//                break;
-//            }
-//        }
-
-        clickSkipAds();
-        log.info("клоуз");
+        adsScreen.skipAllAds();
 
         assertThat(playMenuScreen.hintsSideBar.isHintsAdded())
                 .isTrue();
         log.info("Количество подсказок увеличилось на два");
-        sleep(10000);
-    }
-
-    public void clickSkipAds() {
-        AndroidDriver driver = (AndroidDriver) WebDriverRunner.getWebDriver();
-        if (driver.currentActivity().equals(ConfigReader.getOptionAppActivityAlchemy())) {
-            log.info("Уже вышли из рекламы");
-            return;
-        }
-        String source = driver.getPageSource();
-
-        Pattern patternBounds = Pattern.compile("bounds=\"\\[(\\d+),(\\d+)]\\[(\\d+),(\\d+)]\"");
-        Matcher matcherBounds = patternBounds.matcher(source);
-
-        Pattern patternCountDown = Pattern.compile(
-                "resource-id=\"com\\.ilyin\\.alchemy:id/inter_text_countdown\"[^>]*text=\"(\\d+)\""
-        );
-        Matcher matcherCountDown = patternCountDown.matcher(source);
-
-        int waitTime = 0;
-
-        try {
-            log.info(matcherCountDown.toString());
-            if (matcherCountDown.find()) {
-                waitTime = Integer.parseInt(matcherCountDown.group(1));
-                log.info("Кулдаун рекламы: {}", waitTime);
-            }
-        }catch (IllegalStateException e){
-            log.warn("Кулдаун не найден");
-        }
-
-
-        try {
-
-        if (waitTime > 0) {
-            log.info("Ad countdown: {}", waitTime);
-            Thread.sleep((waitTime + 2) * 1000L);
-        }
-        }catch (InterruptedException e){
-            log.error(e.getMessage());
-        }
-
-        try {
-            while (matcherBounds.find()) {
-                int x1 = Integer.parseInt(matcherBounds.group(1));
-                int y1 = Integer.parseInt(matcherBounds.group(2));
-                int x2 = Integer.parseInt(matcherBounds.group(3));
-                int y2 = Integer.parseInt(matcherBounds.group(4));
-
-                if (x1 > 900 && y1 < 1600) {
-                    int cx = (x1 + x2) / 2;
-                    int cy = (y1 + y2) / 2;
-                    driver.executeScript("mobile: clickGesture",
-                            Map.of("x", cx, "y", cy));
-                    log.info("click {} {}", cx, cy);
-                    break;
-                }
-            }
-        } catch (IllegalStateException e) {
-            log.info("Не нашли кнопку по дампу, ищем кликабельные в диапазоне");
-            List<WebElement> elements =
-                    driver.findElements(AppiumBy.androidUIAutomator("new UiSelector().clickable(true)"));
-
-            for (WebElement el : elements) {
-                Rectangle r = el.getRect();
-
-                if (r.getX() > 900 && r.getY() < 1600 && el.isDisplayed()) {
-                    log.info("click");
-                    el.click();
-                    break;
-                }
-            }
-        }
-
-
     }
 }
